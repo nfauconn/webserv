@@ -6,14 +6,13 @@
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:25:26 by athierry          #+#    #+#             */
-/*   Updated: 2023/07/24 23:00:34 by athierry         ###   ########.fr       */
+/*   Updated: 2023/07/26 00:02:28 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVR_HPP
 #define SERVR_HPP
 
-class 
 class Connection{
 	public:
 		Connection ( void );
@@ -21,7 +20,10 @@ class Connection{
 		~Connection ( void );
 		Connection& operator = ( Connection& connection );
 	private:
-		int				FD;
+		int				socketFD;
+		int				cgiFD;
+		typedef struct Prmtr{
+		};
 };
 
 class Socket{
@@ -31,12 +33,12 @@ class Socket{
 		~Socket ( void );
 		Socket& operator = ( Socket& socket );
 	private:
-		int				FD;
-		typedef struct Prmtr{
-			std::string	host;
-			int			port;
-			int			max_connection;
-		};
+		std::string			host;
+		int					port;
+		int					max_connection;
+		int						FD;
+		Prmtr					prmtr
+		std::vector<Connection>	_Connections;
 };
 
 class Prmtr{
