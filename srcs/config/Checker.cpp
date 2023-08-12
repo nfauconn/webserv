@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Checker.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/08 19:20:13 by athierry          #+#    #+#             */
+/*   Updated: 2023/08/08 19:28:03 by athierry         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CHECKER_HPP
 # define CHECKER_HPP
 
@@ -29,7 +41,7 @@ typedef struct	s_checker{
 # define KEYWORDS 13
 
 const t_keywords keywords[COUNT][KEYWORDS] = {
-	/*.....................................GLOBAL CONTEXT........................................*/
+	/*.....................................ROOT CONTEXT..........................................*/
 {	/*.Keyword..................Default.........Manda...Possi...Direc...Bloc....URI.....Multi....................*/
 	{ "server",					"",				true,	true,	false,	true,	false,	false	}, //.Sets configuration for a virtual server...............
 	{ "index",					"",				false,	true,	true,	false,	false,	true	}, //.Defines files that will be used as an index...........
