@@ -121,7 +121,7 @@ void	Server::_handleClientData(int clientFd) {
 	std::cout << &this->_clientData[clientFd][0] << std::endl;
 	#endif
 	this->_clientRequest.parser(str);
-	//this->_clientRequest.parser(_clientData[clientFd]);
+	// try catch d'exceptions ? (mauvaise requete)
 	this->_epollEvents.editSocketInEpoll(clientFd, EPOLLOUT);
 }
 
