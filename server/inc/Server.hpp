@@ -2,7 +2,6 @@
 # define SERVER_HPP
 
 # define DEBUG
-# define DB_CRLF "\r\n\r\n"
 
 #include <iostream>
 #include <map>
@@ -11,7 +10,7 @@
 #include "Epoll.hpp"
 #include "Request.hpp"
 
-typedef std::map<int, std::vector<char> >				clientData_t;
+typedef std::map<int, Request>				clientData_t;
 
 class Server {
 
@@ -32,8 +31,7 @@ class Server {
 
 		Config								_config;
 		Epoll								_epollEvents;
-		Request								_clientRequest;
-		clientData_t						_clientData;
+		clientData_t						_clientsData;
 
 		void								_readFromClient(int clientFd);
 		void								_writeToClient(int clientFd);

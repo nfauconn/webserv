@@ -13,6 +13,8 @@
 #ifndef REQUEST_HPP
 # define REQUEST_HPP
 
+# define DB_CRLF "\r\n\r\n"
+
 # include <string>
 # include <iostream>
 # include <map>
@@ -40,6 +42,7 @@ class Request {
 		void	setVersion(const std::string);
 		void	setHeaders(const std::map<std::string, std::vector<std::string> >);
 		void	setBody(const std::vector<char>);
+		void	setRaw(const std::vector<char>);
 
 		const std::string										getMethod(void) const;
 		const std::string										getTarget(void) const;
@@ -47,8 +50,9 @@ class Request {
 		const std::string										getVersion(void) const;
 		const std::map<std::string, std::vector<std::string> >	getHeaders(void) const;
 		const std::vector<char>									getBody(void) const;
+		bool													isRequestEnded(void) const;
 
-		void	parser(std::string const);
+		void	parser();
 
 		class RequestLineException : public std::exception { 
 			virtual const char* what() const throw() 
@@ -69,6 +73,11 @@ class Request {
 		std::string												_version;
 		std::map<std::string, std::vector<std::string> >		_headers;
 		std::vector<char>										_body;
+		std::vector <char>										_raw; // Est rempli a chaque passage dans la boucle de <BUFFER_SIZE> bytes supplementaires
+		//bool													_isChunkEncoded;
+		//bool													_hasContentLength;
+		bool													_isFinish;
+
 
 		void	_parseRequestLine(std::istringstream&);
 		void	_parseHeaders(std::istringstream&);

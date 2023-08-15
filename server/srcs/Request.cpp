@@ -22,11 +22,6 @@ Request::Request(Request const &src)
 		*this = src;
 }
 
-Request::Request(std::string const str)
-{
-	this->parser(str);
-}
-
 Request::~Request() {};
 
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::: COMPARISON OPERATORS::
@@ -57,6 +52,8 @@ void Request::setVersion(const std::string version) { this->_version = version; 
 void Request::setQuery(const std::string query) { this->_query = query; }
 
 void Request::setBody(const std::vector<char> body) { this->_body = body; }
+
+void Request::setRaw(const std::vector<char> raw) { this->_raw = raw; }
 
 void Request::setHeaders(const std::map<std::string, std::vector<std::string> > headers) { this->_headers = headers; }
 
@@ -128,8 +125,13 @@ void Request::_parseRequestLine(std::istringstream &stream) {
 	}	
 }
 
-void Request::parser(std::string const str) {
+void Request::parser() {
 	
+	std::string str;
+	str.assign(&this->_raw[0]);
+	#ifdef DEBUG
+	std::cout << &this->_raw[0] << std::endl;
+	#endif
 	std::istringstream iss(str);
 
 	this->_parseRequestLine(iss);
@@ -140,6 +142,27 @@ void Request::parser(std::string const str) {
 	std::cout << *this << std::endl;
 
 }
+
+
+bool	Request::isRequestEnded() const {
+
+	std::string	end_of_data(&this->_raw.end()[-4], &this->_raw.end()[0]);
+
+	if (this->_raw.size() > 4 && end_of_data == DB_CRLF)
+	{
+		std::string	last_buffer(&this->_raw.end()[-100], &this->_raw.end()[0]);
+		if (last_buffer.find("Content-Length") != std::string::npos)
+		{
+			std::cout << "Last buffer: \n" << last_buffer << std::endl;
+			std::cout << "Content-Length found" << std::endl;
+			//handle body size
+			return false;
+		}
+	 	return true;
+	}
+	return false;
+}
+
 
 // ::::::::::::::::::::::::::::::::::::::::::::::: OUTPUT OPERATOR OVERLOADING::
 
