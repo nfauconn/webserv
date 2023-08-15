@@ -6,7 +6,7 @@
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:20:13 by athierry          #+#    #+#             */
-/*   Updated: 2023/08/08 19:28:03 by athierry         ###   ########.fr       */
+/*   Updated: 2023/08/16 00:04:06 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ typedef struct	s_checker{
 	std::string	defaultValue;
 	bool		mandatory;
 	bool		possible;
-	bool		isNode;
 	bool		isDirective;
-	bool		isMultiple;
+	bool		isNode;
 	bool		hasUri;
+	bool		isMultiple;
 }				t_checker;
 
 # define KEYWORDS 13
 
-const t_keywords keywords[COUNT][KEYWORDS] = {
+const t_checker keywords[COUNT][KEYWORDS] = {
 	/*.....................................ROOT CONTEXT..........................................*/
 {	/*.Keyword..................Default.........Manda...Possi...Direc...Bloc....URI.....Multi....................*/
 	{ "server",					"",				true,	true,	false,	true,	false,	false	}, //.Sets configuration for a virtual server...............

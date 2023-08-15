@@ -6,7 +6,7 @@
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:20:00 by athierry          #+#    #+#             */
-/*   Updated: 2023/08/10 21:07:45 by athierry         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:48:15 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ class Directive{
 	private:
 		std::string															_pName;
 		std::string															_pParent;
-		std::map < std::string, std::vector < std::string > >				_pDirectives;
 };
 
 #endif

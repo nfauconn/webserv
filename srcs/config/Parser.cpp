@@ -6,10 +6,8 @@
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:28:29 by athierry          #+#    #+#             */
-/*   Updated: 2023/08/08 19:28:32 by athierry         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:49:04 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_HPP
-# define PARSER_HPP
-#endif
+#include "Parser.hpp"

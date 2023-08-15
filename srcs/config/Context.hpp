@@ -6,7 +6,7 @@
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:07:18 by athierry          #+#    #+#             */
-/*   Updated: 2023/08/09 00:21:57 by athierry         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:48:15 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class Context: public class Bloc{
 		Context ( Context & bloc );
 		~Context ( void );
 		Context & operator = ( Context & bloc );
+		typedef std::map < std::string, std::vector < std::string > >	_Directives;
 	protected:
 		std::map < std::string, Bloc>	_Blocs;
 	private:

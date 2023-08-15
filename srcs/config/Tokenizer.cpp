@@ -6,7 +6,7 @@
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:28:48 by athierry          #+#    #+#             */
-/*   Updated: 2023/08/13 01:24:17 by athierry         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:30:44 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,43 @@ bool Tokenizer::specialChar ( char c ) {
 }
 
 void Tokenizer::charToken ( char c ) {
+	std::string content;
+	content += c;
+	_Tokens.push_back(content);
 }
 
-void Tokenizer::quotes ( std::string::iterator str ) {
+void Tokenizer::quotes ( std::string::iterator & str ) {
+	std::string	content;
+	char		c = *str++;
+	while (*str && *str != c) {
+		content += *str;
+		str++;
+		}
+	if (*str == c)
+		str++;
+	_Tokens.push_back(content);
 }
 
-void Tokenizer::token ( std::string::iterator str ) {
+void Tokenizer::variable ( std::string::iterator& str ) {
+	// TODO
+	token(str);
 }
 
-void Tokenizer::variable ( std::string::iterator str ) {
+void Tokenizer::spaces ( std::string::iterator & str ) {
+	while (*str and std::isspace(*str))
+		str++;
+}
+
+void Tokenizer::token ( std::string::iterator & str ) {
+	std::string content;
+	while (*str and not std::isspace(*str) and not specialChar(*str)){
+		content += *str;
+		str++;
+	}
+	_Tokens.push_back(content);
+}
+
+void Tokenizer::variable ( std::string::iterator & str ) {
 }
 
 void Tokenizer::Tokenizer ( std::string & filename ) {
@@ -52,20 +80,12 @@ void Tokenizer::Tokenizer ( std::string & filename ) {
 	for (std::string::iterator str = content.begin(); str != content.end();){
 		switch (*str){
 			case '{':
-				charToken(*(str++));
-				break;
 			case '}':
-				charToken(*(str++));
-				break;
 			case ';':
-				charToken(*(str++));
-				break;
 			case '\n':
 				charToken(*(str++));
 				break;
 			case '\'':
-				quotes(str);
-				break;
 			case '\"':
 				quotes(str);
 				break;
@@ -73,22 +93,14 @@ void Tokenizer::Tokenizer ( std::string & filename ) {
 				variable(++str);
 				break;
 			case ' ':
-				str++;
-				break;
 			case '\t':
-				str++;
-				break;
 			case '\f':
-				str++;
-				break;
 			case '\r':
-				str++;
-				break;
 			case '\v':
-				str++;
+				spaces(str);
+				break;
 			case '#':
-				while (str != content.end() and *(str++) != '\n')
-					str++;
+				comment(++str);
 				break;
 			default:
 				token(str);
@@ -98,4 +110,10 @@ void Tokenizer::Tokenizer ( std::string & filename ) {
 }
 
 const std::string & Tokenizer::getToken ( void ){
+	const std::string		end = "";
+	static TokenIterator	iterator = _Tokens.begin();
+
+	if (iterator == _Tokens.end())
+		return end;
+	return (*(iterator++));
 }
