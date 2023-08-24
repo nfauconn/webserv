@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Conf.hpp                                           :+:      :+:    :+:   */
+/*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 19:28:22 by athierry          #+#    #+#             */
-/*   Updated: 2023/08/24 21:44:39 by athierry         ###   ########.fr       */
+/*   Created: 2023/08/09 00:07:18 by athierry          #+#    #+#             */
+/*   Updated: 2023/08/24 23:42:16 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONF_HPP
-# define CONF_HPP
+#ifndef SERVER_HPP
+#define SERVER_HPP
 
-class Conf{
+class Server{
 	public:
 		// Coplien Compliant
-		Conf ( void );
-		Conf ( Conf & copy );
-		~Conf ( void );
-		Conf & operator = ( Conf & copy );
+		Server ( void );
+		Server ( Server & copy );
+		~Server ( void );
+		Server & operator = ( Server & copy );
 		// Constructor
-		Conf ( std::string & filename );
+		Server ( std::string & name );
 		// 
+		typedef std::map < std::string, std::vector < std::string > >	Directives;
 		// 
 	protected:
-		// 
 	private:
-		// 
-		Tokenizer	_Tokens;
-		// 
+		std::string		_Name;
+		Directives		_Directives;
 };
 
 #endif
