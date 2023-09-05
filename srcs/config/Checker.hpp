@@ -6,7 +6,7 @@
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:28:08 by athierry          #+#    #+#             */
-/*   Updated: 2023/08/24 22:46:56 by athierry         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:12:44 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ typedef struct	s_checker{
 	std::string	defaultValue;
 	bool		mandatory;
 	bool		possible;
-	bool		isDirective;
-	bool		isNode;
-	bool		hasUri;
-	bool		isMultiple;
+	bool		directive;
+	bool		node;
+	bool		uri;
+	bool		multiple;
 }				t_checker;
 
 # define KEYWORDS 13

@@ -6,7 +6,7 @@
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:28:48 by athierry          #+#    #+#             */
-/*   Updated: 2023/08/15 20:30:44 by athierry         ###   ########.fr       */
+/*   Updated: 2023/09/05 20:17:10 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ void Tokenizer::token ( std::string::iterator & str ) {
 		str++;
 	}
 	_Tokens.push_back(content);
-}
-
-void Tokenizer::variable ( std::string::iterator & str ) {
 }
 
 void Tokenizer::Tokenizer ( std::string & filename ) {

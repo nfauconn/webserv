@@ -6,7 +6,7 @@
 /*   By: athierry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 19:28:22 by athierry          #+#    #+#             */
-/*   Updated: 2023/08/24 21:44:39 by athierry         ###   ########.fr       */
+/*   Updated: 2023/09/05 22:54:39 by athierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ class Conf{
 		// 
 	private:
 		// 
-		Tokenizer	_Tokens;
+		Tokenizer					_Tokens;
+		std::vector<Server>		_Servers;
 		// 
 };
 
