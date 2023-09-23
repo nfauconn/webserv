@@ -33,6 +33,51 @@ void	ServerContext::setServerNames(std::vector<std::string> const& serverNames) 
 
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::METHODS
 
+void ServerContext::_parseServerName(std::string const& line) {
+
+	std::stringstream			stream(line);
+	std::string					directive;
+	std::string					serverName;
+	std::vector<std::string> 	serverNames;
+
+//	std::vector<std::string>::iterator it = AContext.getServerNames().begin();
+//	if (*it == "localhost")
+//		AContext.getServerNames().erase(it);
+	
+	stream >> directive;
+	while (stream >> serverName) {
+		if (serverName.find(';') != std::string::npos)
+			serverName = serverName.substr(0, serverName.find_first_of(";"));
+		serverNames.push_back(serverName);
+	}
+	this->setServerNames(serverNames);
+}
+
+void	ServerContext::_parseListen(std::string const& line) {
+
+	std::stringstream	stream(line);
+	std::string			listen;
+	std::string			ip;
+	int					port(80); //If only address is given, the port 80 is used.
+
+//	std::map<std::string, int>::iterator it = this->_listen.begin();
+//	if (it->first == "127.0.0.1" && it->second == 80)
+//		this->_listen.erase(it);
+
+//	TODO : check with defaut & possible values
+
+	stream >> listen;
+	if (stream.str().find(':') != std::string::npos)
+	{
+		std::getline(stream, ip, ':');
+		if (ip.empty())
+			ip = "127.0.0.1";
+		ip = ip.substr(ip.find_first_not_of(" "), ip.size());
+		this->isValidIPv4(ip);
+	}
+	stream >> port;
+	this->setListen(ip, port);
+}
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: OPERATOR OVERLOAD::
 

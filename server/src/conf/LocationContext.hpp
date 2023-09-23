@@ -1,9 +1,9 @@
 #ifndef LOCATION_CONTEXT_HPP
 # define LOCATION_CONTEXT_HPP
 
-#include "print.hpp"
+#include "AContext.hpp"
 
-class LocationContext {
+class LocationContext : public AContext{
 
 	public:
 		LocationContext();
@@ -11,26 +11,15 @@ class LocationContext {
 		LocationContext& operator=(LocationContext const& rhs);
 		~LocationContext();
 
-		size_t								getMaxBodySize() const;
-		std::string const&					getAlias() const;
-		std::string const&					getRoot() const;
-		std::map<int, std::string> const&	getErrorPages() const;
-		std::vector<std::string> const&		getAuthorizedMethods() const;
-
-		void	setMaxBodySize(size_t size);
+		void	setLocation(std::string const& location);
 		void	setAlias(std::string const& alias);
-		void	setRoot(std::string const& root);
-		void	setErrorPage(std::map<int, std::string> const& errorPages);
-		void	setAuthorizedMethods(std::vector<std::string> const& authorizedMethods);
+
+		std::string const&	getLocation(void) const;
+		std::string const&	getAlias(void) const;
 
 	private:
-		bool						_cgi;
-		size_t						_maxBodySize;
-		std::string					_alias;
-		std::string					_root;
-		std::map<int, std::string>	_errorPages;
-		std::vector<std::string>	_index;
-		std::vector<std::string>	_authorizedMethods;
+		std::string		_location;
+		std::string		_alias;
 };
 
 std::ostream &	operator<<(std::ostream & o, LocationContext const & cc);

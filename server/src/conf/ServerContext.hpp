@@ -24,6 +24,8 @@ class ServerContext : public AContext {
 		std::map<std::string, std::string>	_locations; // TODO: change to map<string, LocationContext>		
 		std::vector<std::string>			_serverNames;
 
+		void	_parseServerName(std::string const& line);
+		void	_parseListen(std::string const& line);
 };
 
 std::ostream &	operator<<(std::ostream & o, ServerContext const & cc);
