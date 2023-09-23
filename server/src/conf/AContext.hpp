@@ -1,15 +1,18 @@
-#ifndef SERVER_CONTEXT_HPP
-# define SERVER_CONTEXT_HPP
+#ifndef ACONTEXT_HPP
+# define ACONTEXT_HPP
 
-# include "AContext.hpp"
+#include <map>
+#include <vector>
 
-class ServerContext : public AContext {
+#include "print.hpp"
+
+class AContext {
 
 	public:
-		ServerContext();
-		ServerContext(ServerContext const&);
-		ServerContext& operator=(ServerContext const& rhs);
-		~ServerContext();
+		AContext();
+		AContext(AContext const&);
+		AContext& operator=(AContext const& rhs);
+		virtual ~AContext();
 
 		bool										getAutoindex() const;
 		bool										getCgi() const;
@@ -42,11 +45,11 @@ class ServerContext : public AContext {
 		bool								_autoindex;
 		bool								_cgi;
 		size_t								_maxBodySize;
-		std::string							_root;
+		std::string							_root; //
 
 		std::map<std::string, int> 			_listen; // <IP, port>
 		std::map<int, std::string>			_errorPages;
-		std::map<std::string, std::string>	_locations; // TODO: change to map<string, LocationContext>
+		std::map<std::string, std::string>	_locations; // special : location context. Class?
 		
 		std::vector<std::string>			_index;
 		std::vector<std::string>			_authorizedMethods;
@@ -54,6 +57,6 @@ class ServerContext : public AContext {
 
 };
 
-std::ostream &	operator<<(std::ostream & o, ServerContext const & cc);
+std::ostream &	operator<<(std::ostream & o, AContext const & cc);
 
 #endif
