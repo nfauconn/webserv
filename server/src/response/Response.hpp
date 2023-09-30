@@ -1,6 +1,8 @@
 #ifndef RESPONSE_HPP
 # define RESPONSE_HPP
 
+#include "Request.hpp"
+#include "ServerContext.hpp"
 #include "HandleGet.hpp"
 #include "StatusLine.hpp"
 #include "Headers.hpp"
@@ -9,27 +11,27 @@
 class ResponseHandler;
 class ResponseBuilder;
 
-class Response {
+class Response : public AResponse {
 
 	public:
 
-		//Response();
-		Response(Response const& rhs);
+		Response();
+		Response(Response const&);
 		Response(Request const&, ServerContext const&);
 		~Response();
-		Response& operator=(Response const& rhs);
+		Response& operator=(Response const&);
 
+		void			setMethod(AHandler * method);
+		void			setStatusLine(StatusLine const&);
+		void			setHeaders(Headers const&);
+		void			setBody(Body const&);
 
-		std::string const&		getStatusLine() const;
-		std::string const&		getHeaders(void) const;
-		std::string const&		getBody() const;
-		std::string const&		getResponseStr() const;
+		AHandler *		getMethod() const;
+		StatusLine		getStatusLine() const;
+		Headers			getHeaders() const;
+		Body			getBody() const;
 
-
-		void	setStatusLine(std::string const&);
-		void	setHeaders(std::string const&);
-		void	setBody(std::string const&);
-		void	setResponseStr(std::string const&);
+		void			build();
 		
 	private:
 
@@ -37,9 +39,6 @@ class Response {
 		StatusLine		_statusLine;
 		Headers			_headers;
 		Body			_body;
-
-		std::string		_responseStr;
-
 };
 
 std::ostream& operator<<(std::ostream& o, Response const& rhs);

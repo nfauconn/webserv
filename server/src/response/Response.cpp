@@ -1,90 +1,58 @@
 #include "Response.hpp"
 
-//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: CONSTRUCTORS::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: CONSTRUCTORS::
 
-/* Response::Response() : 
-			_statusCode("200"),
-			_version("HTTP/1.1"),
-			_isCGI(false),
-			_path(""),
-			_handler(this),
-			_builder(this) {
+Response::Response() : AReponse(), _method(NULL) {}
 
-	this->setStatusMessages("../neoserv/status.codes");
-	this->setMimeTypes("../neoserv/mime.types");	
+Response::Response(Request const & request, ServerContext const & serverContext) : _method(NULL) {
 
-	this->_handler.handleResponse();
-	this->_builder.buildResponse();
-
-} */
-
-Response::Response(Request const& request, ServerContext const& conf) : _request(request), _serverContext(conf) {
-
-	//TODO
 }
 
-Response::Response(Response const& rhs) {
-
-	if (this != &rhs)
-		*this = rhs;
+Response::Response(Response const & rhs) : AResponse(rhs) {
+	
+	*this = rhs;
 }
 
 Response::~Response() {}
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: OPERATORS::
 
-//::::::::::::::::::::::::::::::::::::::::::::::::::::::: COMPARISON OPERATORS::
+Response &		Response::operator=(Response const & rhs) {
 
-Response& Response::operator=(Response const& rhs)
-{
-	if (this != &rhs)
-	{
-		//TODO
+	if (this != &rhs) {
+		this->setMethod(rhs.getMethod());
+		this->setStatusLine(rhs.getStatusLine());
+		this->setHeaders(rhs.getHeaders());
+		this->setBody(rhs.getBody());
 	}
-	return (*this);
+
+	return *this;
 }
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ACCESSORS::
 
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ACCESSORS::
+void			Response::setMethod(AHandler * method) { _method = method; }
+void			Response::setStatusLine(StatusLine const & statusLine) { _statusLine = statusLine; }
+void			Response::setHeaders(Headers const & headers) { _headers = headers; }
+void			Response::setBody(Body const & body) { _body = body; }
 
-Request const &			Response::getRequest() const { return (this->_request); }
-ServerContext const &	Response::getServerContext() const { return (this->_serverContext); }
+AHandler *		Response::getMethod() const { return _method; }
+StatusLine		Response::getStatusLine() const { return _statusLine; }
+Headers			Response::getHeaders() const { return _headers; }
+Body			Response::getBody() const { return _body; }
 
-StatusCodes const &		Response::getStatusCodes() const { return this->_statusCodes; }
-MimeTypes const &		Response::getMimeTypes() const { return this->_mimeTypes; }
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: METHODS::
 
-std::string const &		Response::getPath() const { return (this->_path); }
+void			Response::build() {
 
-std::string const &		Response::getStatusLine() const { return (this->_statusLine); }
-std::string const &		Response::getHeaders(void) const { return (this->_headers); }
-std::string const &		Response::getBody() const { return (this->_body); }
-
-std::string const &		Response::getResponseStr() const { return (this->_responseStr); }
-
-
-//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: SETTERS::
-
-void	Response::setRequest(Request const& request) { this->_request = request; }
-void	Response::setServerContext(ServerContext const& serverContext) { this->_serverContext = serverContext; }
-
-void	Response::setStatusCodes(StatusCodes const& statusCodes) { this->_statusCodes = statusCodes; }
-void	Response::setMimeTypes(MimeTypes const& mimeTypes) { this->_mimeTypes = mimeTypes; }
-
-void	Response::setPath(std::string const& targetFinalPath) { this->_path = targetFinalPath; }
-
-void	Response::setStatusLine(std::string const& statusLine) { this->_statusLine = statusLine; }
-void	Response::setHeaders(std::string const& headers) { this->_headers = headers; }
-void 	Response::setBody(std::string const& body) { this->_body = body; }
-void	Response::setResponseStr(std::string const& responseStr) { this->_responseStr = responseStr; }
-
-
-//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: METHODS::
-
-
-
-//::::::::::::::::::::::::::::::::::::::::::::::::::::OUTPUT OPERATOR OVERLOAD::
-
-std::ostream& operator<<(std::ostream& o, Response const& rhs) {
-	o << rhs.getResponseStr();
-	return (o);
-}
+	this->_method->handle();
 	
+	this->_statusLine.build();
+	
+	this->_body.build();
+
+	this->_headers.setContentLength(_body.getMessage().length());
+	this->_headers.build();
+
+	this->setMessage(_statusLine.getMessage() + _headers.getMessage() + _body.getMessage());
+}

@@ -6,7 +6,7 @@
 #    By: seozcan <seozcan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/18 15:25:37 by seozcan           #+#    #+#              #
-#    Updated: 2023/09/28 18:59:02 by seozcan          ###   ########.fr        #
+#    Updated: 2023/09/30 13:57:00 by seozcan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,10 @@ SRC		:=	$(addprefix $(CONF),		\
 			  	MimeTypes.cpp			\
 			 	AHandler.cpp			\
 				HandleGet.cpp			\
-				ResponseBuilder.cpp		\
+				AResponse.cpp			\
+				StatusLine.cpp			\
+				Headers.cpp				\
+				Body.cpp				\
 				StatusCodes.cpp)		\
 			$(addprefix $(UTILS),		\
 				print.cpp)
