@@ -10,12 +10,15 @@ ResponseContext::ResponseContext(Request const& request, ServerContext const& se
 
 	t_locationIterator it = this->_serverContext.locations().begin();
 	t_locationIterator ite = this->_serverContext.locations().end();
+
 	for (; it != ite; ++it) {
 		if (this->_target.find(it->first) != std::string::npos) {
-			this->_location = it;
-			break;
+			if (it->first.size() > this->_location->first.size())
+				this->_location = it;
+			//TODO : check value by default of it->first
 		}
 	}
+	// TODO : check if location is not empty
 	if (it != ite) {
 		if (this->_location->second.alias() != "") {
 			std::string tmp = this->_location->second.alias();

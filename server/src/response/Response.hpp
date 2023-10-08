@@ -31,14 +31,13 @@ class Response {
 	public:
 
 		Response();
-		Response(Request const&, ServerContext const&, HttpStatus const&);
+		Response(ResponseContext const&, HttpStatus const&);
 		Response(Response const&);
 		~Response();
 		Response& operator=(Response const&);
 
 		// :::::::::::::::::::::::::::: ACCESSORS
-		Request const&			request() const;
-		ServerContext const&	serverContext() const;
+		ResponseContext const&	responseContext() const;
 		Body const&				body() const;
 		HttpStatus const&		status() const;
 
@@ -47,8 +46,7 @@ class Response {
 		std::string const&		responseStr() const;
 
 		// ::::::::::::::::::::::::::::::: MUTATORS
-		void		setRequest(Request const&);
-		void		setServerContext(ServerContext const&);
+		void		setResponseContext(ResponseContext const&);
 		void		setBody(Body const&);
 		void		setStatus(HttpStatus const&);
 
@@ -62,8 +60,7 @@ class Response {
 
 		// ::::::::::::::::::::::::::: ATTRIBUTES
 		// CONTEXT
-		Request				_request;
-		ServerContext		_serverContext;
+		ResponseContext		_responseContext;
 		HttpStatus			_status;
 		Body				_body;
 

@@ -7,7 +7,7 @@ Response::Response() : _status("") {
 	//TODO
 }
 
-Response::Response(Request const& request, ServerContext const& serverContext, HttpStatus const& status) : _request(request), _serverContext(serverContext), _status(status) {
+Response::Response(ResponseContext const& rc, HttpStatus const& _status) : _status(status) {
 
 	this->buildResponse();
 }
@@ -35,8 +35,7 @@ Response& Response::operator=(Response const& rhs)
 
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: GETTERS::
 
-Request const&			Response::request() const { return _request; }
-ServerContext const&	Response::serverContext() const { return _serverContext; }
+ResponseContext const&	Response::responseContext() const { return _responseContext; }
 Body const&				Response::body() const { return _body; }
 HttpStatus const&		Response::status() const { return _status; }
 
@@ -46,8 +45,7 @@ std::string const&		Response::responseStr() const { return _responseStr; }
 
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: SETTERS::
 
-void	Response::setRequest(Request const& request) { _request = request; }
-void	Response::setServerContext(ServerContext const& serverContext) { _serverContext = serverContext; }
+void	Response::setResponseContext(ResponseContext const& responseContext) { _responseContext = responseContext; }
 void	Response::setBody(Body const& body) { _body = body; }
 void	Response::setStatus(HttpStatus const& status) { _status = status; }
 

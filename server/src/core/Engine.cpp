@@ -162,7 +162,8 @@ void	Engine::_handleBuffer(int clientFd) {
 
 void	Engine::_writeToClient(int clientFd) {
 
-	Response res(this->_requests[clientFd], this->_serverContexts[clientFd], this->_status[clientFd]);
+	ResponseContext	resCtx(this->_requests[clientFd], this->_serverContexts[clientFd]);
+	Response res(resCtx, this->_status[clientFd]);
 	
 	utl::log(clientFd, "Response about to be sent!");
 	std::cout << GREEN << res.responseStr() << RESET << std::endl;
