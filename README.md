@@ -1,7 +1,7 @@
 [![en](https://img.shields.io/badge/lang-en-pink.svg)](https://github.com/nfauconn/webserv/blob/master/README.md)
 [![fr](https://img.shields.io/badge/lang-fr-purple.svg)](https://github.com/nfauconn/webserv/blob/master/README.fr.md)
 
-*C++ Language* • *Networking* • *HTTP Protocol* • *Web Server* • *CGI* • *Multiplexing* • *NGINX*
+*C++ Language* • *Networking* • *HTTP Protocol* • *Web Server* • *CGI* • *Multiplexing* • *NGINX* • *Error Management* • *Git Branching* • *Compilation Automation with Makefile*
 
 # Webserv
 

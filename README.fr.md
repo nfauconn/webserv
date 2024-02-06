@@ -1,7 +1,7 @@
 [![en](https://img.shields.io/badge/lang-en-pink.svg)](https://github.com/nfauconn/webserv/blob/master/README.md)
 [![fr](https://img.shields.io/badge/lang-fr-purple.svg)](https://github.com/nfauconn/webserv/blob/master/README.fr.md)
 
-*Langage C++* • *Réseau* • *Protocole HTTP* • *Serveur Web* • *CGI* • *Multiplexage* • *NGINX*
+*Langage C++* • *Réseau* • *Protocole HTTP* • *Serveur Web* • *CGI* • *Multiplexage* • *NGINX* • *Gestion des Erreurs* • *Branches Git* • *Automatisation de la Compilation avec Makefile*
 
 # Webserv
 
