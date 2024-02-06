@@ -2,7 +2,7 @@
 
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: CONSTRUCTORS::
 
-Request::Request(void) : _method(), _target(), _query(), _version(), _headers(), _body() {}
+Request::Request() : _method(), _target(), _query(), _version(), _headers(), _body() {}
 
 Request::Request(Request const &src) {
 	if (this != &src)
@@ -42,14 +42,14 @@ void	Request::setHeaders(const std::map<std::string, std::string> headers) { thi
 void	Request::setBoundary(const std::string boundary) { this->_boundary = boundary; }
 
 
-std::string const & 		Request::method(void) const { return this->_method; }
-std::string const & 		Request::target(void) const { return this->_target; }
-std::string const & 		Request::version(void) const { return this->_version; }
-std::string const & 		Request::query(void) const { return this->_query; }
-std::vector<char> const & 	Request::body(void) const { return this->_body; }
+std::string const & 		Request::method() const { return this->_method; }
+std::string const & 		Request::target() const { return this->_target; }
+std::string const & 		Request::version() const { return this->_version; }
+std::string const & 		Request::query() const { return this->_query; }
+std::vector<char> const & 	Request::body() const { return this->_body; }
 std::string const & 		Request::header(std::string const & key) const { return this->_headers.find(key)->second; }
-t_headers const &		 	Request::headers(void) const { return this->_headers; }
-std::string const & 		Request::boundary(void) const { return this->_boundary; }
+t_headers const &		 	Request::headers() const { return this->_headers; }
+std::string const & 		Request::boundary() const { return this->_boundary; }
 
 
 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::: MEMBER FUNCTIONS::

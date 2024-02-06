@@ -14,17 +14,17 @@ class ServerContext : public AContext {
 		ServerContext& operator=(ServerContext const& rhs);
 		~ServerContext();
 
-		std::map<std::string, int> const&				listen(void) const;
-		std::map<std::string, LocationContext> const&	locations(void) const;
-		std::vector<std::string> const&					serverNames(void) const;
-		int												port(void) const;
+		std::map<std::string, int> const&				listen() const;
+		std::map<std::string, LocationContext> const&	locations() const;
+		std::vector<std::string> const&					serverNames() const;
+		int												port() const;
 
 		void	setListen(std::string const& ip, int port);
 		void	addLocation(std::string const& location, LocationContext const& locationContext);
 		void	setLocations(std::map<std::string, LocationContext> locationsMap);
 		void	setServerNames(std::vector<std::string> const& serverNames);
 
-		void	setDefaults(void);
+		void	setDefaults();
 
 	private:
 		std::map<std::string, int> 				_listen;

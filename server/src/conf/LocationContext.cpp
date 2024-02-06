@@ -21,8 +21,8 @@ LocationContext::~LocationContext() {}
 
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::GETTERS
 
-std::string const&		LocationContext::name(void) const { return this->_name; }
-std::string const&		LocationContext::alias(void) const { return this->_alias; }
+std::string const&		LocationContext::name() const { return this->_name; }
+std::string const&		LocationContext::alias() const { return this->_alias; }
 
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::SETTERS
 

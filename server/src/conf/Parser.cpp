@@ -24,15 +24,15 @@ Parser &	Parser::operator=(Parser const & rhs) {
 	return *this;
 }
 
-Parser::~Parser(void) {}
+Parser::~Parser() {}
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ACCESSORS::
 
-std::vector<ServerContext> const&	Parser::serverContexts(void) const { return this->_serversContexts; }
+std::vector<ServerContext> const&	Parser::serverContexts() const { return this->_serversContexts; }
 
-std::string const&					Parser::confFileName(void) const { return this->_confFilename; }
+std::string const&					Parser::confFileName() const { return this->_confFilename; }
 
-size_t								Parser::linesRead(void) const { return this->_linesRead; }
+size_t								Parser::linesRead() const { return this->_linesRead; }
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: METHODS::
 

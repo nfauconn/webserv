@@ -11,7 +11,7 @@
 class ARespComponent {
 
 	public:
-		ARespComponent(void);
+		ARespComponent();
 		ARespComponent(std::string const &);
 		ARespComponent(std::vector<char> const &);
 		ARespComponent(ARespComponent const &);
@@ -22,9 +22,9 @@ class ARespComponent {
 		virtual void					setContent(std::string const &);
 		virtual void					setContent(std::vector<char> const &);
 		
-		virtual std::string const &		getContent(void) const;
+		virtual std::string const &		getContent() const;
 
-		virtual void	build(void) = 0;
+		virtual void	build() = 0;
 	
 	protected:
 		std::string _content;

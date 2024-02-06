@@ -25,11 +25,11 @@ class Parser {
 		Parser(std::string const&);
 		~Parser();
 
-		std::vector<ServerContext> const&	serverContexts(void) const;
-		std::string const&					confFileName(void) const;
-		size_t								linesRead(void) const;
+		std::vector<ServerContext> const&	serverContexts() const;
+		std::string const&					confFileName() const;
+		size_t								linesRead() const;
 
-		void	parse(void);
+		void	parse();
 
 	private:
 		Parser();

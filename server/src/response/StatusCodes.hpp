@@ -5,7 +5,7 @@
 
 class StatusCodes : public AFile {
 	public:
-		StatusCodes(void);
+		StatusCodes();
 		~StatusCodes();
 
 		std::string const&	getReasonPhrase(std::string const&) const;
