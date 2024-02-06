@@ -27,7 +27,7 @@ Le projet Webserv nous amène à écrire notre propre serveur HTTP en C++ 98 ins
 
 ```shell
 git clone git@github.com:nfauconn/webserv.git
-cd webserv/Projet
+cd webserv/Project
 make
 ./webserv [fichier_config]
 ```
